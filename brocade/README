@@ -1,0 +1,12 @@
+- To enable Brocade Service Provider,  comment the Haproxy (which is the default service provider for LOADBALANCER) under service_provider section and specify Brocade as the service provider for LOADBALANCER (as shown below)
+
+    service_provider = LOADBALANCERV2:LoggingNoop:neutron.services.loadbalancer.drivers.brocade.brocade_lbaas_driver.BrocadeLoadBalancerDriver:default
+
+- Edit the following entry in /etc/neutron/services.conf file to point to the location of
+the device inventory file
+    [brocade]
+    devices_file_name=/etc/neutron/services/loadbalancer/brocade/devices.json
+
+- Sample devices.json file is provided in neutron/services/loadbalancer/drivers/brocade/device_driver directory
+
+- Restart the Neutron Server
